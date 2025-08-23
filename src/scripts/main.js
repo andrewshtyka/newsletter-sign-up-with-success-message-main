@@ -1,27 +1,34 @@
 import validator from "validator";
 
-const form = document.getElementById("form");
-let userEmail = "";
 const cardSubscribe = document.getElementById("card-subscribe");
 const cardSubscribeBackup = cardSubscribe.innerHTML;
+let userEmail = "";
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //
-// save to local storage
-const emailInput = document.getElementById("email-input");
-emailInput.value = localStorage.getItem("email") || "";
-emailInput.addEventListener("input", (e) => {
-  localStorage.setItem("email", e.target.value);
-  console.log(e.target.value);
-});
+// init form and start saving data to local storage
+function initForm() {
+  const emailInput = document.getElementById("email-input");
+  const form = document.getElementById("form");
+
+  emailInput.value = localStorage.getItem("email") || "";
+  emailInput.addEventListener("input", (e) => {
+    localStorage.setItem("email", e.target.value);
+    console.log(e.target.value);
+  });
+
+  form.addEventListener("submit", handleSubmit);
+}
+
+initForm();
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //
-// logic of submit & validation
+// submit screen logic
 function handleSubmit(e) {
   e.preventDefault();
 
@@ -34,8 +41,8 @@ function handleSubmit(e) {
   }
 
   errorMessage.textContent = "";
-  userEmail = emailInput.value;
   localStorage.removeItem("email");
+  userEmail = emailInput.value;
   emailInput.value = "";
 
   cardSubscribe.innerHTML = `
@@ -48,31 +55,18 @@ function handleSubmit(e) {
         <button id="dismiss-button" type="button">Dismiss message</button>
     </article>
     `;
-
   // add animation here
 }
-
-form.addEventListener("submit", handleSubmit);
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //
-// markup for success
+// success screen logic
 cardSubscribe.addEventListener("click", (e) => {
   if (e.target.matches("#dismiss-button")) {
     cardSubscribe.innerHTML = cardSubscribeBackup;
-
-    const emailInput = document.getElementById("email-input");
-    emailInput.value = localStorage.getItem("email") || "";
-    emailInput.addEventListener("input", (e) => {
-      localStorage.setItem("email", e.target.value);
-      console.log(e.target.value);
-    });
-
-    const form = document.getElementById("form");
-    form.addEventListener("submit", handleSubmit);
-
+    initForm();
     // add animation here
   }
 });
