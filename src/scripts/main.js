@@ -20,7 +20,7 @@ cardSubscribe.addEventListener("submit", (e) => {
   emailInput.value = "";
 
   cardSubscribe.innerHTML = `
-    <article id="card-thanks">
+    <article>
         <svg height="16" width="16">
             <use href="" />
         </svg>
