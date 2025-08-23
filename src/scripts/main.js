@@ -1,14 +1,32 @@
 import validator from "validator";
 
+const form = document.getElementById("form");
+let userEmail = "";
 const cardSubscribe = document.getElementById("card-subscribe");
 const cardSubscribeBackup = cardSubscribe.innerHTML;
-let userEmail = "";
 
-cardSubscribe.addEventListener("submit", (e) => {
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// save to local storage
+const emailInput = document.getElementById("email-input");
+emailInput.value = localStorage.getItem("email") || "";
+emailInput.addEventListener("input", (e) => {
+  localStorage.setItem("email", e.target.value);
+  console.log(e.target.value);
+});
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// logic of submit & validation
+function handleSubmit(e) {
   e.preventDefault();
 
-  const emailInput = e.target.querySelector("#email-input");
-  const errorMessage = e.target.querySelector("#email-error");
+  const emailInput = document.getElementById("email-input");
+  const errorMessage = document.getElementById("email-error");
 
   if (!validator.isEmail(emailInput.value)) {
     errorMessage.textContent = "Valid email required";
@@ -17,6 +35,7 @@ cardSubscribe.addEventListener("submit", (e) => {
 
   errorMessage.textContent = "";
   userEmail = emailInput.value;
+  localStorage.removeItem("email");
   emailInput.value = "";
 
   cardSubscribe.innerHTML = `
@@ -31,11 +50,29 @@ cardSubscribe.addEventListener("submit", (e) => {
     `;
 
   // add animation here
-});
+}
 
+form.addEventListener("submit", handleSubmit);
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// markup for success
 cardSubscribe.addEventListener("click", (e) => {
   if (e.target.matches("#dismiss-button")) {
     cardSubscribe.innerHTML = cardSubscribeBackup;
+
+    const emailInput = document.getElementById("email-input");
+    emailInput.value = localStorage.getItem("email") || "";
+    emailInput.addEventListener("input", (e) => {
+      localStorage.setItem("email", e.target.value);
+      console.log(e.target.value);
+    });
+
+    const form = document.getElementById("form");
+    form.addEventListener("submit", handleSubmit);
+
     // add animation here
   }
 });
