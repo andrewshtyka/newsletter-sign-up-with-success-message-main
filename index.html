@@ -9,9 +9,15 @@
 
     <!-- Appearance, Fonts -->
     <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Styles -->
-    <style media="all">
+    <!-- <style media="all">
       /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
       html {
         line-height: 1.15;
@@ -350,10 +356,41 @@
           transform: scale(1) translate3d(0, 0, 0);
         }
       }
-    </style>
-    <link rel="stylesheet" href="./src/styles/style.css" />
+    </style> -->
+    <link rel="stylesheet" href="./src/styles/main.css" />
 
     <!-- Scripts -->
+    <script src="./src/scripts/main.js" type="module" defer></script>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <article id="card-subscribe">
+        <img src="" srcset="" alt="" width="" height="" />
+
+        <div id="form">
+          <div>
+            <h1>Stay updated!</h1>
+            <p>Join 60,000+ product managers receiving monthly updates on:</p>
+            <ul>
+              <li>Product discovery and building what matters</li>
+              <li>Measuring to ensure updates are a success</li>
+              <li>And much more!</li>
+            </ul>
+          </div>
+
+          <form id="form">
+            <div>
+              <label for="email-input">Email address</label>
+              <input id="email-input" type="email" name="email" placeholder="email@company.com" />
+              <span aria-live="polite" id="email-error"></span>
+            </div>
+
+            <button id="subscribe-button" type="submit">Subscribe to monthly newsletter</button>
+          </form>
+
+          
+        </div>
+      </article>
+    </main>
+  </body>
 </html>

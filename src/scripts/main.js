@@ -1,24 +1,41 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import validator from "validator";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const cardSubscribe = document.getElementById("card-subscribe");
+const cardSubscribeBackup = cardSubscribe.innerHTML;
+let userEmail = "";
 
-setupCounter(document.querySelector('#counter'))
+cardSubscribe.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const emailInput = e.target.querySelector("#email-input");
+  const errorMessage = e.target.querySelector("#email-error");
+
+  if (!validator.isEmail(emailInput.value)) {
+    errorMessage.textContent = "Valid email required";
+    return;
+  }
+
+  errorMessage.textContent = "";
+  userEmail = emailInput.value;
+  emailInput.value = "";
+
+  cardSubscribe.innerHTML = `
+    <article id="card-thanks">
+        <svg height="16" width="16">
+            <use href="" />
+        </svg>
+        <h2>Thanks for subscribing!</h2>
+        <p>A confirmation email has been sent to <span>${userEmail}</span>. Please open it and click the button inside to confirm your subscription.</p>
+        <button id="dismiss-button" type="button">Dismiss message</button>
+    </article>
+    `;
+
+  // add animation here
+});
+
+cardSubscribe.addEventListener("click", (e) => {
+  if (e.target.matches("#dismiss-button")) {
+    cardSubscribe.innerHTML = cardSubscribeBackup;
+    // add animation here
+  }
+});
