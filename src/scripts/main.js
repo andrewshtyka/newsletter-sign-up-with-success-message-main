@@ -16,7 +16,6 @@ function initForm() {
   emailInput.value = localStorage.getItem("email") || "";
   emailInput.addEventListener("input", (e) => {
     localStorage.setItem("email", e.target.value);
-    console.log(e.target.value);
   });
 
   form.addEventListener("submit", handleSubmit);
@@ -43,7 +42,6 @@ function handleSubmit(e) {
   errorMessage.textContent = "";
   localStorage.removeItem("email");
   userEmail = emailInput.value;
-  emailInput.value = "";
 
   cardSubscribe.innerHTML = `
     <article>
@@ -55,6 +53,8 @@ function handleSubmit(e) {
         <button id="dismiss-button" type="button">Dismiss message</button>
     </article>
     `;
+
+  console.log(userEmail);
   // add animation here
 }
 
