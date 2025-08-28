@@ -94,12 +94,7 @@ function showSuccess() {
   markup.innerHTML = `
     <article class="o-card_success">
       <div class="u-flex:col u-gap:2rem o-card_success:title">
-        <img
-            src="../assets/images/icon-success.svg"
-            width="64"
-            height="64"
-            alt="Check"
-          />
+        <span class="img-success"></span>
         <h2 class="f-preset_1">Thanks for subscribing!</h2>
         <p class="f-preset_2 f-width:40ch">A confirmation email has been sent to <strong class="f-preset_2 f-weight:700">${userEmail}</strong>. Please open it and click the button inside to confirm your subscription</p>
       </div>

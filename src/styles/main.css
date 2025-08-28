@@ -211,6 +211,13 @@ body {
   }
 }
 
+.img-success {
+  width: 4rem;
+  height: 4rem;
+  background-image: url(../assets/images/icon-success.svg);
+  background-size: contain;
+}
+
 /* #endregion = LAYOUT */
 /* #region = UTILITIES */
 .u-flex\:col {
