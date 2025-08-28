@@ -4,6 +4,11 @@ initAndStart();
 
 function initAndStart() {
   storeAndWriteData();
+
+  const inputEmail = document.getElementById("email");
+  inputEmail.removeEventListener("blur", validation);
+  inputEmail.addEventListener("blur", validation);
+
   const form = document.getElementById("form");
   form.removeEventListener("submit", handleSubmit);
   form.addEventListener("submit", handleSubmit);
@@ -30,19 +35,22 @@ function storeAndWriteData() {
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //
-// email validation (on submit)
+// email validation
 function validation() {
   const inputEmail = document.getElementById("email");
   const errorEmail = document.getElementById("error-email");
 
   if (inputEmail.value === "") {
     errorEmail.textContent = "Please type email";
+    inputEmail.classList.add("u-error");
     return false;
   } else if (!validator.isEmail(inputEmail.value)) {
     errorEmail.textContent = "Valid email required";
+    inputEmail.classList.add("u-error");
     return false;
   } else {
     errorEmail.textContent = "";
+    inputEmail.classList.remove("u-error");
     return true;
   }
 }

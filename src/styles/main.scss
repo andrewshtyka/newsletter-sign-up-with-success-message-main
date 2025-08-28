@@ -5,6 +5,13 @@ $color-grey: hsl(0, 0%, 58%);
 $color-blue-700: hsl(235, 18%, 26%);
 $color-blue-800: hsl(234, 29%, 20%);
 $color-red: hsl(4, 100%, 67%);
+$color-red-100: hsl(2, 100%, 95%);
+
+*,
+*::before,
+::after {
+  box-sizing: border-box;
+}
 
 html {
   text-rendering: optimizeSpeed;
@@ -15,9 +22,218 @@ html:focus-within {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 100%;
+  color: $color-blue-800;
 }
 
 /* #endregion = GLOBAL */
+
+/* #region = COMPONENTS */
+
+.c-bg {
+  min-height: 100svh;
+  background-color: $color-blue-700;
+}
+
+.c-card {
+  background-color: $color-white;
+  width: 100%;
+  max-inline-size: clamp(20rem, calc(20rem + 17vw), 31rem);
+
+  @media (min-width: 24rem) {
+    border-radius: 0.75rem;
+  }
+
+  @media (min-width: 48rem) {
+    border-radius: 2rem;
+    padding: 2.5rem;
+
+    max-inline-size: none;
+    max-inline-size: clamp(31rem, calc(26rem + 17vw), 50rem);
+  }
+
+  @media (min-width: 64rem) {
+    max-inline-size: none;
+    inline-size: 56.5rem;
+
+    &.u-flex\:col {
+      flex-direction: row;
+    }
+  }
+}
+
+.c-list\:item {
+  position: relative;
+  padding-inline-start: 2.25rem;
+}
+
+.c-list\:item::before {
+  content: "";
+  position: absolute;
+  top: 0.125rem;
+  left: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+
+  background-image: url(../assets/images/icon-list.svg);
+  background-size: contain;
+}
+
+.c-input {
+  padding: 1rem 1.5rem;
+  background-color: $color-white;
+  border: 1px solid $color-grey;
+  border-radius: 0.5rem;
+
+  &::placeholder {
+    color: $color-grey;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $color-blue-800;
+  }
+}
+
+.c-button {
+  background-color: $color-blue-800;
+  color: $color-white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* #endregion = COMPONENTS */
+
+/* #region = LAYOUT */
+
+.o-img {
+  width: 100%;
+  line-height: 0;
+
+  @media (min-width: 24rem) {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+  }
+}
+
+.o-card_content {
+  padding: 2.5rem 1.5rem;
+  padding-top: 0;
+
+  @media (min-width: 48rem) {
+    padding: 0;
+
+    &.u-gap\:2\.5rem {
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    order: -1;
+    justify-content: center;
+
+    .u-gap\:1\.5rem {
+      gap: 2rem;
+    }
+
+    &.u-gap\:2\.5rem {
+      gap: 2rem;
+    }
+  }
+}
+
+.o-form {
+  @media (min-width: 48rem) {
+    &.u-gap\:1\.5rem {
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    &.u-gap\:1\.5rem {
+      gap: 1.5rem;
+    }
+  }
+}
+
+/* #endregion = LAYOUT */
+
+/* #region = UTILITIES */
+
+.u-flex\:col {
+  display: flex;
+  flex-direction: column;
+}
+
+.u-flex\:row {
+  display: flex;
+  flex-direction: row;
+}
+
+.u-flex\:center {
+  align-items: center;
+  justify-content: center;
+}
+
+.u-flex\:sp-btw {
+  justify-content: space-between;
+}
+
+.u-gap\:0\.5rem {
+  gap: 0.5rem;
+}
+
+.u-gap\:1\.5rem {
+  gap: 1.5rem;
+}
+
+.u-gap\:2\.5rem {
+  gap: 2.5rem;
+}
+
+.u-error {
+  border-color: $color-red;
+  background-color: $color-red-100;
+}
+
+.u-error_font {
+  color: $color-red;
+}
+
+/* #endregion = UTILITIES */
+
+/* #region = FONTS */
+
+.f-preset_1 {
+  font-size: 2.5rem;
+  line-height: 100%;
+  font-weight: 700;
+
+  @media (min-width: 48rem) {
+    font-size: 3.5rem;
+  }
+}
+
+.f-preset_2 {
+  font-size: 1rem;
+  line-height: 150%;
+  font-weight: 400;
+}
+
+.f-preset_3 {
+  font-size: 0.75rem;
+  line-height: 150%;
+  font-weight: 700;
+}
+
+.f-weight\:700 {
+  font-weight: 700;
+}
+
+.f-width\:40ch {
+  // max-inline-size: 40ch;
+}
+
+/* #endregion = FONTS */
