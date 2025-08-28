@@ -4,8 +4,6 @@ import { animate } from "animejs";
 initAndStart();
 
 function initAndStart() {
-  
-
   storeAndWriteData();
 
   const inputEmail = document.getElementById("email");
@@ -97,7 +95,7 @@ function showSuccess() {
     <article class="o-card_success">
       <div class="u-flex:col u-gap:2rem o-card_success:title">
         <img
-            src="./assets/images/icon-success.svg"
+            src="../assets/images/icon-success.svg"
             width="64"
             height="64"
             alt="Check"
