@@ -1,4 +1,3 @@
-/* #region = GLOBAL */
 *,
 *::before,
 ::after {
@@ -47,6 +46,8 @@ body {
 }
 @media (min-width: 64rem) {
   .c-card {
+    height: 40rem;
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
     max-inline-size: none;
     inline-size: 56.5rem;
   }
@@ -76,6 +77,7 @@ body {
   background-color: hsl(0, 0%, 100%);
   border: 1px solid hsl(0, 0%, 58%);
   border-radius: 0.5rem;
+  transition: all 200ms;
 }
 .c-input::-moz-placeholder {
   color: hsl(0, 0%, 58%);
@@ -83,15 +85,47 @@ body {
 .c-input::placeholder {
   color: hsl(0, 0%, 58%);
 }
-.c-input:hover, .c-input:focus {
+.c-input:focus {
   border-color: hsl(234, 29%, 20%);
+  box-shadow: 0 0 0 1px hsl(234, 29%, 20%);
+}
+@media (min-width: 64rem) {
+  .c-input:hover {
+    border-color: hsl(234, 29%, 20%);
+    box-shadow: 0 0 0 1px hsl(234, 29%, 20%);
+  }
 }
 
+@property --a {
+  syntax: "<color>"; /* its type */
+  inherits: false;
+  initial-value: hsl(234, 29%, 20%); /* the initial value */
+}
+@property --b {
+  syntax: "<color>"; /* its type */
+  inherits: false;
+  initial-value: hsl(234, 29%, 20%); /* the initial value */
+}
 .c-button {
-  background-color: hsl(234, 29%, 20%);
+  --a: $color-blue-800;
+  --b: $color-blue-800;
   color: hsl(0, 0%, 100%);
   padding: 1rem;
   border-radius: 0.5rem;
+  transition: --a 300ms, --b 300ms, box-shadow 300ms;
+  background: linear-gradient(90deg, var(--a), var(--b));
+}
+.c-button:focus {
+  --a: hsl(15, 100%, 61%);
+  --b: hsl(346, 100%, 66%);
+  box-shadow: 0 1rem 2rem 0 hsla(4, 100%, 67%, 0.5);
+}
+@media (min-width: 64rem) {
+  .c-button:hover {
+    --a: hsl(15, 100%, 61%);
+    --b: hsl(346, 100%, 66%);
+    box-shadow: 0 1rem 2rem 0 hsla(4, 100%, 67%, 0.5);
+  }
 }
 
 /* #endregion = COMPONENTS */
@@ -104,6 +138,15 @@ body {
   .o-img {
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
+  }
+}
+@media (min-width: 64rem) {
+  .o-img {
+    height: 100%;
+    width: 25rem;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 1rem;
   }
 }
 
@@ -123,6 +166,7 @@ body {
   .o-card_content {
     order: -1;
     justify-content: center;
+    flex: 1;
   }
   .o-card_content .u-gap\:1\.5rem {
     gap: 2rem;
@@ -140,6 +184,36 @@ body {
 @media (min-width: 64rem) {
   .o-form.u-gap\:1\.5rem {
     gap: 1.5rem;
+  }
+}
+
+.o-card_success {
+  padding: 3rem 1.5rem 3rem 1.5rem;
+  background-color: hsl(0, 0%, 100%);
+  max-inline-size: clamp(20rem, 20rem + 17vw, 31rem);
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 24rem) {
+  .o-card_success {
+    border-radius: 0.75rem;
+  }
+}
+@media (min-width: 48rem) {
+  .o-card_success {
+    padding: 4rem;
+    gap: 2rem;
+    max-inline-size: 31rem;
+    border-radius: 2rem;
+  }
+}
+
+.o-card_success\:title {
+  padding-bottom: 10vh;
+}
+@media (min-width: 48rem) {
+  .o-card_success\:title {
+    padding-bottom: 0;
   }
 }
 
@@ -172,6 +246,10 @@ body {
   gap: 1.5rem;
 }
 
+.u-gap\:2rem {
+  gap: 2rem;
+}
+
 .u-gap\:2\.5rem {
   gap: 2.5rem;
 }
@@ -179,6 +257,22 @@ body {
 .u-error {
   border-color: hsl(4, 100%, 67%);
   background-color: hsl(2, 100%, 95%);
+}
+.u-error:focus {
+  border-color: hsl(4, 100%, 67%);
+  box-shadow: 0 0 0 1px hsl(4, 100%, 67%);
+}
+.u-error::-moz-placeholder {
+  color: hsl(4, 100%, 67%);
+}
+.u-error::placeholder {
+  color: hsl(4, 100%, 67%);
+}
+@media (min-width: 64rem) {
+  .u-error:hover {
+    border-color: hsl(4, 100%, 67%);
+    box-shadow: 0 0 0 1px hsl(4, 100%, 67%);
+  }
 }
 
 .u-error_font {
@@ -212,6 +306,10 @@ body {
 
 .f-weight\:700 {
   font-weight: 700;
+}
+
+.f-width\:40ch {
+  max-inline-size: 40ch;
 }
 
 /* #endregion = FONTS *//*# sourceMappingURL=main.css.map */

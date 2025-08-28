@@ -1,8 +1,11 @@
 import validator from "validator";
+import { animate } from "animejs";
 
 initAndStart();
 
 function initAndStart() {
+  
+
   storeAndWriteData();
 
   const inputEmail = document.getElementById("email");
@@ -86,14 +89,23 @@ function showSuccess() {
   const markup = document.getElementById("card-subscribe");
   let markupBackup = markup.innerHTML;
 
+  markup.classList.remove("c-card");
+  markup.classList.remove("u-flex:col");
+  markup.classList.remove("u-gap:2.5rem");
+
   markup.innerHTML = `
-    <article>
-      <svg width="64" height="64">
-        <use href=""></use>
-      </svg>
-      <h2>Thanks for subscribing!</h2>
-      <p>A confirmation email has been sent to <strong>${userEmail}</strong>. Please open it and click the button inside to confirm your subscription</p>
-      <button id="button-dismiss" type="button">Dismiss message</button>
+    <article class="o-card_success">
+      <div class="u-flex:col u-gap:2rem o-card_success:title">
+        <img
+            src="./assets/images/icon-success.svg"
+            width="64"
+            height="64"
+            alt="Check"
+          />
+        <h2 class="f-preset_1">Thanks for subscribing!</h2>
+        <p class="f-preset_2 f-width:40ch">A confirmation email has been sent to <strong class="f-preset_2 f-weight:700">${userEmail}</strong>. Please open it and click the button inside to confirm your subscription</p>
+      </div>
+      <button class="c-button" id="button-dismiss" type="button">Dismiss message</button>
     </article>
   `;
 
@@ -105,6 +117,12 @@ function showSuccess() {
   freshMarkup.addEventListener("click", (event) => {
     if (event.target.matches("#button-dismiss")) {
       freshMarkup.innerHTML = markupBackup;
+
+      const markup = document.getElementById("card-subscribe");
+
+      markup.classList.add("c-card");
+      markup.classList.add("u-flex:col");
+      markup.classList.add("u-gap:2.5rem");
 
       localStorage.removeItem("email");
       const form = document.getElementById("form");

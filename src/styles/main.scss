@@ -1,4 +1,4 @@
-/* #region = GLOBAL */
+// /* #region = GLOBAL */
 
 $color-white: hsl(0, 0%, 100%);
 $color-grey: hsl(0, 0%, 58%);
@@ -6,6 +6,10 @@ $color-blue-700: hsl(235, 18%, 26%);
 $color-blue-800: hsl(234, 29%, 20%);
 $color-red: hsl(4, 100%, 67%);
 $color-red-100: hsl(2, 100%, 95%);
+$color-orange: hsl(15, 100%, 61%);
+$color-pink: hsl(346, 100%, 66%);
+$color-shadow: hsla(4, 100%, 67%, 0.5);
+$shadow: 0 1rem 2rem 0 $color-shadow;
 
 *,
 *::before,
@@ -40,6 +44,7 @@ body {
 .c-card {
   background-color: $color-white;
   width: 100%;
+
   max-inline-size: clamp(20rem, calc(20rem + 17vw), 31rem);
 
   @media (min-width: 24rem) {
@@ -55,6 +60,9 @@ body {
   }
 
   @media (min-width: 64rem) {
+    height: 40rem;
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+
     max-inline-size: none;
     inline-size: 56.5rem;
 
@@ -87,21 +95,61 @@ body {
   border: 1px solid $color-grey;
   border-radius: 0.5rem;
 
+  transition: all 200ms;
+
   &::placeholder {
     color: $color-grey;
   }
 
-  &:hover,
   &:focus {
     border-color: $color-blue-800;
+    box-shadow: 0 0 0 1px $color-blue-800;
+  }
+
+  @media (min-width: 64rem) {
+    &:hover {
+      border-color: $color-blue-800;
+      box-shadow: 0 0 0 1px $color-blue-800;
+    }
   }
 }
 
+@property --a {
+  syntax: "<color>"; /* its type */
+  inherits: false;
+  initial-value: $color-blue-800; /* the initial value */
+}
+
+@property --b {
+  syntax: "<color>"; /* its type */
+  inherits: false;
+  initial-value: $color-blue-800; /* the initial value */
+}
+
 .c-button {
-  background-color: $color-blue-800;
+  --a: $color-blue-800;
+  --b: $color-blue-800;
   color: $color-white;
   padding: 1rem;
   border-radius: 0.5rem;
+
+  transition: --a 300ms, --b 300ms, box-shadow 300ms;
+
+  background: linear-gradient(90deg, var(--a), var(--b));
+
+  &:focus {
+    --a: hsl(15, 100%, 61%);
+    --b: hsl(346, 100%, 66%);
+    box-shadow: $shadow;
+  }
+
+  @media (min-width: 64rem) {
+    &:hover {
+      --a: hsl(15, 100%, 61%);
+      --b: hsl(346, 100%, 66%);
+      box-shadow: $shadow;
+    }
+  }
 }
 
 /* #endregion = COMPONENTS */
@@ -115,6 +163,13 @@ body {
   @media (min-width: 24rem) {
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
+  }
+
+  @media (min-width: 64rem) {
+    height: 100%;
+    width: 25rem;
+    object-fit: cover;
+    border-radius: 1rem;
   }
 }
 
@@ -133,6 +188,7 @@ body {
   @media (min-width: 64rem) {
     order: -1;
     justify-content: center;
+    flex: 1;
 
     .u-gap\:1\.5rem {
       gap: 2rem;
@@ -155,6 +211,36 @@ body {
     &.u-gap\:1\.5rem {
       gap: 1.5rem;
     }
+  }
+}
+
+.o-card_success {
+  padding: 3rem 1.5rem 3rem 1.5rem;
+  background-color: $color-white;
+
+  max-inline-size: clamp(20rem, calc(20rem + 17vw), 31rem);
+
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 24rem) {
+    border-radius: 0.75rem;
+  }
+
+  @media (min-width: 48rem) {
+    padding: 4rem;
+    gap: 2rem;
+    max-inline-size: 31rem;
+
+    border-radius: 2rem;
+  }
+}
+
+.o-card_success\:title {
+  padding-bottom: 10vh;
+
+  @media (min-width: 48rem) {
+    padding-bottom: 0;
   }
 }
 
@@ -189,6 +275,10 @@ body {
   gap: 1.5rem;
 }
 
+.u-gap\:2rem {
+  gap: 2rem;
+}
+
 .u-gap\:2\.5rem {
   gap: 2.5rem;
 }
@@ -196,6 +286,22 @@ body {
 .u-error {
   border-color: $color-red;
   background-color: $color-red-100;
+
+  &:focus {
+    border-color: $color-red;
+    box-shadow: 0 0 0 1px $color-red;
+  }
+
+  &::placeholder {
+    color: $color-red;
+  }
+
+  @media (min-width: 64rem) {
+    &:hover {
+      border-color: $color-red;
+      box-shadow: 0 0 0 1px $color-red;
+    }
+  }
 }
 
 .u-error_font {
@@ -233,7 +339,7 @@ body {
 }
 
 .f-width\:40ch {
-  // max-inline-size: 40ch;
+  max-inline-size: 40ch;
 }
 
 /* #endregion = FONTS */
