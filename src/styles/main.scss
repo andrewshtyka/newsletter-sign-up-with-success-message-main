@@ -211,19 +211,17 @@ body {
 }
 
 .o-card_success {
+  width: 100svw;
+  height: 100svh;
   padding: 3rem 1.5rem 3rem 1.5rem;
   background-color: $color-white;
-
-  max-inline-size: clamp(20rem, calc(20rem + 17vw), 31rem);
+  justify-content: space-between;
 
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 24rem) {
-    border-radius: 0.75rem;
-  }
-
   @media (min-width: 48rem) {
+    height: auto;
     padding: 4rem;
     gap: 2rem;
     max-inline-size: 31rem;
