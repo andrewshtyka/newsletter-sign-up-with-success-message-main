@@ -37,21 +37,17 @@ body {
 /* #region = COMPONENTS */
 
 .c-bg {
-  min-height: 100svh;
+  height: 100svh;
   background-color: $color-blue-700;
 }
 
 .c-card {
   background-color: $color-white;
   width: 100%;
-
-  max-inline-size: clamp(20rem, calc(20rem + 17vw), 31rem);
-
-  @media (min-width: 24rem) {
-    border-radius: 0.75rem;
-  }
+  height: 100svh;
 
   @media (min-width: 48rem) {
+    height: auto;
     border-radius: 2rem;
     padding: 2.5rem;
 
@@ -160,11 +156,6 @@ body {
   width: 100%;
   line-height: 0;
 
-  @media (min-width: 24rem) {
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-  }
-
   @media (min-width: 64rem) {
     height: 100%;
     width: 25rem;
@@ -176,6 +167,11 @@ body {
 .o-card_content {
   padding: 2.5rem 1.5rem;
   padding-top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 
   @media (min-width: 48rem) {
     padding: 0;
