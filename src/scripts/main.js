@@ -1,5 +1,4 @@
 import validator from "validator";
-import { animate } from "animejs";
 
 initAndStart();
 
@@ -14,6 +13,7 @@ function initAndStart() {
   form.removeEventListener("submit", handleSubmit);
   form.addEventListener("submit", handleSubmit);
 }
+
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
